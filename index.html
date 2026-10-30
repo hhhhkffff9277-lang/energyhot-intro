@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EnergyHot｜读到动态，也追到后续</title>
+<meta name="description" content="EnergyHot 是能源产业资讯与事件项目：把政策、市场、项目与技术变化，放回出处、事件和时间里。当前处于本地试运行。">
+<link rel="preload" as="image" href="./assets/energyhot-hero.jpg">
+<style>
+:root{
+--paper:#faf7f0;--paper2:#f3ede2;--card:#fffdf9;--ink:#181c1a;--ink2:#3d4744;--muted:#717a75;
+--line:#e3dccd;--green:#12362a;--green-d:#0d2c22;--copper:#b2683a;--radius:18px;
+--shadow:0 22px 46px -38px rgba(18,54,42,.55);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:74px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.78 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p{margin:0 0 14px;color:var(--ink2)}
+p:last-child{margin-bottom:0}
+h1,h2,h3,h4{margin:0;line-height:1.26;letter-spacing:-.01em;font-weight:700}
+ul{margin:0}
+.wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-9999px;top:0}
+.skip:focus{left:14px;top:14px;z-index:99;background:#fff;padding:10px 14px;border-radius:8px}
+:focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+button{font:inherit}
+
+/* ---------- topbar ---------- */
+.topbar{position:sticky;top:0;z-index:30;background:rgba(250,247,240,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:14px;min-height:56px}
+.logo{font-weight:800;font-size:15.5px;color:var(--green);text-decoration:none;display:flex;align-items:center;gap:8px;letter-spacing:.01em;flex:0 0 auto}
+.logo i{width:9px;height:9px;border-radius:2px;background:var(--copper);transform:rotate(45deg)}
+.topnav{margin-left:auto;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;max-width:calc(100% - 110px)}
+.topnav::-webkit-scrollbar{display:none}
+.topnav a{padding:7px 11px;border-radius:999px;font-size:13.5px;color:var(--ink2);text-decoration:none;white-space:nowrap}
+.topnav a:hover{background:#efe8da;color:var(--green)}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(26px,4.6vw,58px) 0 clamp(30px,4.6vw,56px)}
+.hero-grid{display:grid;grid-template-columns:1.02fr 1fr;gap:clamp(20px,4vw,46px);align-items:center}
+.eyebrow{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--copper);font-weight:700;margin:0 0 13px}
+h1{font-size:clamp(28px,4.5vw,49px);line-height:1.24;color:var(--green);margin:0 0 15px;max-width:14em}
+.lede{font-size:clamp(15px,1.5vw,17px);line-height:1.88;color:var(--ink2);max-width:27em;margin:0 0 18px}
+.pill{display:inline-flex;align-items:center;gap:9px;font-size:13px;padding:8px 15px;border-radius:999px;background:#edf3ee;border:1px solid #d5e2d6;color:#24503d;max-width:100%}
+.pill i{width:7px;height:7px;border-radius:50%;background:#3f7a54;flex:0 0 auto}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0}
+.btn{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:12px 21px;font-size:14.5px;font-weight:600;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .16s ease,background .18s ease,border-color .18s ease}
+.btn-primary{background:var(--green);color:#faf6ee}
+.btn-primary:hover{background:var(--green-d);transform:translateY(-1px)}
+.btn-primary:active{transform:translateY(1px) scale(.99)}
+.btn-ghost{border-color:#cbc2b0;color:var(--green);background:transparent}
+.btn-ghost:hover{background:#f1ebdd}
+.hero-fig{margin:0;border-radius:20px;overflow:hidden;background:#f1ece1;border:1px solid var(--line);box-shadow:var(--shadow)}
+.hero-fig img{width:100%;aspect-ratio:1400/876;object-fit:contain}
+figcaption{font-size:11.5px;line-height:1.6;color:var(--muted);padding:9px 3px 0}
+
+/* ---------- sections ---------- */
+section{padding:clamp(42px,6vw,74px) 0}
+.sec-alt{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+h2{font-size:clamp(21px,3vw,31px);color:var(--green);max-width:22em;margin:0 0 12px}
+.sec-sub{font-size:14.5px;color:var(--muted);max-width:38em;margin:0 0 24px}
+.sec-head{margin:0 0 10px;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.kicker{font-size:11.5px;letter-spacing:.16em;color:var(--copper);font-weight:700;text-transform:uppercase}
+
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--ink2);border-radius:12px;padding:10px 16px;font-size:14.5px;font-weight:600;display:inline-flex;gap:9px;align-items:center;cursor:pointer;transition:background .18s ease,border-color .18s ease,color .18s ease,transform .15s ease}
+.tab .n{font-size:11.5px;color:var(--copper);font-variant-numeric:tabular-nums}
+.tab:hover{border-color:#c9bfa9;transform:translateY(-1px)}
+.tab[aria-selected="true"]{background:var(--green);border-color:var(--green);color:#fbf7ef}
+.tab[aria-selected="true"] .n{color:#e3bd9c}
+.panel{display:grid;grid-template-columns:1.02fr 1fr;gap:clamp(16px,3vw,32px);align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(14px,2.3vw,22px);box-shadow:var(--shadow)}
+.panel-fig{margin:0;border-radius:14px;overflow:hidden;background:#f4efe4}
+.panel-fig img{width:100%;aspect-ratio:1/1;object-fit:contain}
+.panel-body{min-height:8.6em}
+.panel h3{font-size:clamp(18px,2.1vw,22px);color:var(--green);margin:0 0 9px}
+.panel p{font-size:15px;margin:0}
+.panel .tagline{font-size:11.5px;letter-spacing:.12em;color:var(--copper);font-weight:700;margin:0 0 8px}
+.swap{animation:rise .38s ease both}
+
+/* trace band */
+.band{background:var(--green);color:#eef3ee}
+.band h2{color:#faf6ec}
+.band p{color:#c6d5cd}
+.band .sec-sub{color:#9fb3a8}
+.trace{display:grid;grid-template-columns:1fr .82fr;gap:clamp(20px,3.4vw,42px);align-items:center}
+.stage-list{list-style:none;padding:0;display:grid;gap:8px;margin:18px 0 0}
+.stage{width:100%;text-align:left;display:flex;gap:11px;align-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);color:#e6eee9;border-radius:12px;padding:12px 14px;font-size:14.5px;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .15s ease}
+.stage:hover{background:rgba(255,255,255,.11);transform:translateX(2px)}
+.stage[aria-pressed="true"]{background:rgba(178,104,58,.24);border-color:#c98a5b;color:#fff}
+.stage .n{font-size:11.5px;font-weight:700;color:#dcae8b;font-variant-numeric:tabular-nums}
+.stage[aria-pressed="true"] .n{color:#f0d3b8}
+.progress{height:6px;border-radius:99px;background:rgba(255,255,255,.15);overflow:hidden;margin:18px 0 0}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c98a5b,#e8ccab);transition:width .5s cubic-bezier(.3,.7,.2,1)}
+.trace-desc{margin:13px 0 0;font-size:14.5px;color:#dde7e1;min-height:3.2em}
+.trace-tag{display:inline-block;font-size:11.5px;letter-spacing:.06em;border:1px dashed rgba(255,255,255,.36);border-radius:8px;padding:5px 10px;color:#cbd8d1;margin:0 0 12px}
+.trace-fig{margin:0}
+.trace-fig img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:16px;background:#0f2c23;padding:6px}
+.band figcaption{color:#94a89e}
+.band .btn-light{background:#f6f1e6;color:var(--green)}
+.band .btn-light:hover{background:#fffdf7}
+.band .trace-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 0}
+
+/* entries */
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0 0 16px;list-style:none}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 16px;font-size:14px;color:var(--ink2);cursor:pointer;transition:background .18s,border-color .18s,color .18s,transform .15s}
+.chip:hover{border-color:#c9bfa9;transform:translateY(-1px)}
+.chip[aria-pressed="true"]{background:#f2ece0;border-color:#c2b49a;color:var(--green);font-weight:600}
+.entry-desc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 18px;font-size:15px;color:var(--ink2);min-height:5em}
+.entry-desc b{color:var(--green)}
+.mini-note{font-size:12.5px;color:var(--muted);margin:12px 0 0}
+
+/* links */
+.links{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.link-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow)}
+.link-card .lbl{font-size:11.5px;letter-spacing:.12em;color:var(--copper);font-weight:700;margin:0 0 7px}
+.link-card .go{font-size:15px;font-weight:600;color:var(--green);text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+.link-card .go:hover{text-decoration:underline}
+.link-card .go span{transition:transform .18s}
+.link-card .go:hover span{transform:translateX(3px)}
+.copy-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0 0}
+.copy{border:1px solid #cbc2b0;background:#f6f1e6;color:#2c4038;border-radius:999px;padding:6px 13px;font-size:13px;cursor:pointer;transition:background .18s}
+.copy:hover{background:#efe7d6}
+.copy-fb{font-size:12.5px;color:#2b6a4a}
+.copy-fb.err{color:#a23c2a}
+details.raw{margin:8px 0 0}
+details.raw summary{font-size:12.5px;color:var(--muted);cursor:pointer;list-style:none;display:inline-flex;gap:6px;align-items:center}
+details.raw summary::-webkit-details-marker{display:none}
+details.raw summary::after{content:"＋";font-size:11px}
+details.raw[open] summary::after{content:"－"}
+details.raw code{display:block;margin:7px 0 0;font-size:12.5px;line-height:1.6;color:#4a544f;background:#f6f1e6;border:1px solid var(--line);border-radius:8px;padding:8px 10px;word-break:break-all;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* progress block */
+.glance{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0 0}
+.glance div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.glance h4{font-size:13.5px;color:var(--green);margin:0 0 5px}
+.glance p{font-size:13.5px;margin:0;line-height:1.7}
+
+/* details / faq */
+.more-group{margin:26px 0 0;display:grid;gap:10px}
+details.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 18px}
+details.box summary{cursor:pointer;list-style:none;padding:15px 0;font-size:15px;font-weight:600;color:var(--green);display:flex;justify-content:space-between;gap:14px;align-items:center}
+details.box summary::-webkit-details-marker{display:none}
+details.box summary::after{content:"展开";font-size:12.5px;font-weight:600;color:var(--copper);flex:0 0 auto}
+details.box[open] summary::after{content:"收起"}
+.box-body{padding:0 0 16px;font-size:14.5px;color:var(--ink2)}
+.box-body ul{padding-left:1.1em;margin:0 0 12px}
+.box-body li{margin:0 0 6px;font-size:14.5px;line-height:1.78}
+.box-body .tiny{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+details.faq summary{font-size:14.8px;font-weight:600;color:var(--ink);padding:13px 0}
+.faq-wrap{border-top:1px solid #efe9db}
+
+/* footer */
+footer{padding:34px 0 44px;border-top:1px solid var(--line);background:var(--paper2)}
+footer p{font-size:13px;color:var(--muted);line-height:1.8}
+footer strong{color:#3c443f}
+footer a{color:#2c5244;text-decoration:none;border-bottom:1px solid #c8bfa9}
+footer a:hover{color:var(--copper)}
+.foot-tag{font-size:14.5px;color:var(--green);font-weight:600;margin:0 0 10px}
+
+/* motion */
+@keyframes rise{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:none}}
+.fade{animation:rise .6s cubic-bezier(.22,.7,.3,1) both}
+.d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}.d4{animation-delay:.32s}.d5{animation-delay:.41s}.d6{animation-delay:.5s}
+.has-io .reveal{opacity:0;transform:translateY(15px);transition:opacity .58s ease,transform .58s cubic-bezier(.22,.7,.3,1)}
+.has-io .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+.fade,.swap{animation:none}
+.has-io .reveal{opacity:1;transform:none;transition:none}
+*,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;transition-duration:.001ms!important}
+}
+
+@media (max-width:820px){
+.hero-grid{grid-template-columns:1fr;gap:20px}
+.hero-fig{order:2}
+.panel{grid-template-columns:1fr}
+.panel-body{min-height:0}
+.trace{grid-template-columns:1fr}
+.glance{grid-template-columns:1fr}
+.links{grid-template-columns:1fr}
+.topnav{display:none}
+h1{max-width:none}
+}
+@media (max-width:420px){
+.chip,.tab{font-size:13.5px;padding:8px 13px}
+.btn{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#read">跳到正文</a>
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="#top"><i aria-hidden="true"></i>EnergyHot</a>
+    <nav class="topnav" aria-label="页面导航">
+      <a href="#read">阅读方式</a>
+      <a href="#trace">追踪示意</a>
+      <a href="#entries">阅读入口</a>
+      <a href="#status">进展</a>
+      <a href="#more">了解更多</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow fade d1">EnergyHot · 能源产业资讯与事件</p>
+      <h1 class="fade d2">读到动态，<br>也追到后续。</h1>
+      <p class="lede fade d3">把政策、市场、项目与技术变化，放回出处、事件和时间里。</p>
+      <p class="pill fade d4"><i aria-hidden="true"></i>本地试运行 · 覆盖与及时性持续完善</p>
+      <div class="cta fade d5">
+        <a class="btn btn-primary" href="#read">看看怎样阅读 →</a>
+        <a class="btn btn-ghost" href="#status">了解当前进展</a>
+      </div>
+    </div>
+    <figure class="hero-fig fade d3">
+      <img src="./assets/energyhot-hero.jpg" width="1400" height="876" alt="概念插画：能源设施与原始资料的观察台" fetchpriority="high" decoding="async">
+    </figure>
+  </div>
+  <div class="wrap"><figcaption>首屏为概念插画，用于示意项目关注的对象，不是真实项目照片或产品截图。</figcaption></div>
+</section>
+
+<section id="read" class="sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="kicker">01 · 三种阅读方式</span></div>
+    <h2 class="reveal">从一条消息，读到来龙去脉。</h2>
+    <p class="sec-sub reveal">同一条变化，可以按三种方式进入：先看动态，再回到事件，需要背景时再去资料里核对时间。</p>
+
+    <div class="tabs reveal" role="tablist" aria-label="三种阅读方式">
+      <button class="tab" type="button" role="tab" id="tab-dynamics" aria-controls="panel-read" aria-selected="true" tabindex="0"><span class="n">01</span>动态</button>
+      <button class="tab" type="button" role="tab" id="tab-events" aria-controls="panel-read" aria-selected="false" tabindex="-1"><span class="n">02</span>事件</button>
+      <button class="tab" type="button" role="tab" id="tab-archive" aria-controls="panel-read" aria-selected="false" tabindex="-1"><span class="n">03</span>资料</button>
+    </div>
+
+    <div class="panel reveal" id="panel-read" role="tabpanel" aria-labelledby="tab-dynamics" tabindex="0">
+      <figure class="panel-fig">
+        <img id="read-img" class="read-img" data-read="0" src="./assets/energyhot-dynamics.jpg" width="900" height="900" loading="eager" decoding="async" alt="概念插画：一条能源消息及其出处">
+        <img class="read-img" data-read="1" src="./assets/energyhot-events.jpg" width="900" height="900" loading="lazy" decoding="async" alt="概念插画：同一项目不同阶段的关联材料" style="display:none">
+        <img class="read-img" data-read="2" src="./assets/energyhot-archive.png" width="1254" height="1254" loading="lazy" decoding="async" alt="概念插画：背景材料与来源档案" style="display:none">
+      </figure>
+      <div class="panel-body" id="read-body" aria-live="polite">
+        <p class="tagline" id="read-tag">动态</p>
+        <h3 id="read-title">先知道，发生了什么。</h3>
+        <p id="read-text">按能源赛道和内容类型读动态，保留出处，方便继续核对。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trace" class="band">
+  <div class="wrap trace">
+    <div>
+      <p class="trace-tag reveal">虚构结构示意</p>
+      <h2 class="reveal">一件事，怎样继续追？</h2>
+      <p class="sec-sub reveal">三个阶段对应同一条线索的不同阶段：先看计划，再对进展，最后核对建成、并网与投运。</p>
+      <ul class="stage-list reveal">
+        <li><button class="stage" type="button" aria-pressed="true" data-stage="0"><span class="n">01</span>发布建设计划</button></li>
+        <li><button class="stage" type="button" aria-pressed="false" data-stage="1"><span class="n">02</span>报道建设进展</button></li>
+        <li><button class="stage" type="button" aria-pressed="false" data-stage="2"><span class="n">03</span>核对并网与运行</button></li>
+      </ul>
+      <div class="progress" role="progressbar" aria-label="示意进度" aria-valuemin="0" aria-valuemax="3" aria-valuenow="1"><i id="trace-bar"></i></div>
+      <p class="trace-desc" id="trace-desc" aria-live="polite">计划：先看范围与目标。</p>
+      <div class="trace-actions reveal">
+        <button class="btn btn-light" type="button" id="trace-play">播放示意</button>
+      </div>
+      <p class="mini-note" style="color:#94a89e">演示只使用本页固定材料，不请求资讯接口，也不代表真实项目更新。</p>
+    </div>
+    <figure class="trace-fig reveal">
+      <img src="./assets/energyhot-events.jpg" width="900" height="900" loading="lazy" decoding="async" alt="概念插画：同一项目不同阶段的关联材料">
+      <figcaption>概念插画：同一件事在不同阶段的材料关系。</figcaption>
+    </figure>
+  </div>
+</section>
+<section id="entries">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="kicker">02 · 现有阅读入口</span></div>
+    <h2 class="reveal">本地阅读框架里，有这几处入口。</h2>
+    <p class="sec-sub reveal">持续资讯与事件是主线，每日回顾帮助阶段性回看。</p>
+    <ul class="chips reveal" id="entry-chips">
+      <li><button class="chip" type="button" aria-pressed="true" data-entry="0">资讯流</button></li>
+      <li><button class="chip" type="button" aria-pressed="false" data-entry="1">产业事件</button></li>
+      <li><button class="chip" type="button" aria-pressed="false" data-entry="2">编辑精选</button></li>
+      <li><button class="chip" type="button" aria-pressed="false" data-entry="3">关注焦点</button></li>
+      <li><button class="chip" type="button" aria-pressed="false" data-entry="4">每日回顾</button></li>
+      <li><button class="chip" type="button" aria-pressed="false" data-entry="5">资料检索</button></li>
+    </ul>
+    <div class="entry-desc reveal" id="entry-desc" aria-live="polite"><b>资讯流：</b>按时间顺序读单条动态，每条都保留出处。</div>
+    <p class="mini-note reveal">这些入口介绍的是本地阅读框架，本页不提供后台或在线搜索。</p>
+  </div>
+</section>
+
+<section id="status" class="sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="kicker">03 · 进展与继续了解</span></div>
+    <h2 class="reveal">持续完善，也保留回看的依据。</h2>
+    <p class="sec-sub reveal">阅读框架已搭建，内容覆盖、及时性、事件组织与连续运行仍在完善。目前先分享项目方法与进展。</p>
+    <p class="reveal"><span class="pill"><i aria-hidden="true"></i>阶段：本地试运行，尚未对外上线</span></p>
+
+    <div class="glance reveal">
+      <div><h4>已经有的</h4><p>资讯、事件、精选、焦点、每日回顾与资料检索的本地框架。</p></div>
+      <div><h4>正在完善</h4><p>内容覆盖、及时性、相关性判断、事件归组与连续运行。</p></div>
+      <div><h4>对外状态</h4><p>介绍页公开不等于产品上线：暂不提供体验、注册与订阅入口。</p></div>
+    </div>
+
+    <ul class="links reveal">
+      <li class="link-card">
+        <p class="lbl">相关链接</p>
+        <a class="go" href="https://ai.run-linux.com/s/mjrGbzjPHs7pAN_1fSdMGA" target="_blank" rel="noopener noreferrer">写作 skill 介绍 <span aria-hidden="true">→</span></a>
+        <div class="copy-row">
+          <button class="copy" type="button" data-copy="https://ai.run-linux.com/s/mjrGbzjPHs7pAN_1fSdMGA">复制链接</button>
+          <span class="copy-fb" aria-live="polite"></span>
+        </div>
+        <details class="raw"><summary>查看完整地址</summary><code>https://ai.run-linux.com/s/mjrGbzjPHs7pAN_1fSdMGA</code></details>
+      </li>
+      <li class="link-card">
+        <p class="lbl">相关链接</p>
+        <a class="go" href="https://zefainfo.cn/" target="_blank" rel="noopener noreferrer">泽法官网 <span aria-hidden="true">→</span></a>
+        <div class="copy-row">
+          <button class="copy" type="button" data-copy="https://zefainfo.cn/">复制链接</button>
+          <span class="copy-fb" aria-live="polite"></span>
+        </div>
+        <details class="raw"><summary>查看完整地址</summary><code>https://zefainfo.cn/</code></details>
+      </li>
+    </ul>
+    <p class="mini-note reveal">在微信等宿主内，外链可能被限制跳转；可展开完整地址后手动复制到浏览器打开。</p>
+  </div>
+</section>
+
+<section id="more">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="kicker">04 · 了解更多</span></div>
+    <h2 class="reveal">阅读原则、分类与常见问题。</h2>
+    <p class="sec-sub reveal">主阅读区只留必要说明，详细内容按需展开。</p>
+
+    <div class="more-group">
+      <details class="box reveal">
+        <summary>阅读与编辑原则</summary>
+        <div class="box-body">
+          <ul>
+            <li><b>保留出处。</b>区分“来源这样说”与“已独立核实”。</li>
+            <li><b>单条不等同于事件。</b>一条报道与围绕同一件事的一组报道，是两种阅读单位。</li>
+            <li><b>时间分开记。</b>发布时间、收录时间与编辑更新时间分别对待，不合并成模糊的“最新”。</li>
+            <li><b>历史不冒充新增。</b>旧材料重新进入视野，仍按原日期标注。</li>
+            <li><b>渠道不等于独立证据。</b>同一发布主体的多个渠道不当作多份证据。</li>
+            <li><b>摘要只是入口。</b>重要事实回到原始资料核对。</li>
+          </ul>
+          <p class="tiny">这些是编辑上的要求，不代表已实现全自动、零差错核验。</p>
+        </div>
+      </details>
+
+      <details class="box reveal">
+        <summary>领域与内容类型</summary>
+        <div class="box-body">
+          <p><b>领域：</b>电力电网、油气、煤炭、风光、水电、储能、核能聚变、氢能与其他低碳技术、AI 与能源、综合能源。</p>
+          <p><b>内容类型：</b>政策监管、市场数据、项目进展、企业资本、技术研究、产品设备、采购招标、分析观点、方法解读。</p>
+          <p class="tiny">这些是本地导航里已有的分类，不代表各领域供给都已丰富稳定。</p>
+        </div>
+      </details>
+
+      <details class="box faq">
+        <summary>常见问题</summary>
+        <div class="box-body faq-wrap">
+          <details class="faq"><summary>现在可以注册或在线使用吗？</summary><p>目前为本地试运行，本页只介绍方法与进展，不提供公开使用入口，也没有注册或订阅功能。</p></details>
+          <details class="faq"><summary>资讯和事件有什么区别？</summary><p>资讯是一条材料；事件围绕同一件正在发生的事，把相关报道组织起来便于看后续。事件关系与归组质量仍在持续校准。</p></details>
+          <details class="faq"><summary>每日回顾与持续更新是什么关系？</summary><p>持续资讯与事件是主线，每日回顾只是阶段性汇总，不是覆盖全天全网的完整结论，也不承诺固定更新频率。</p></details>
+          <details class="faq"><summary>怎样查原始出处？</summary><p>每条内容都尽量保留来源，重要判断应回到原始材料核对；热点程度与真实性、法律效力、投资价值无关。</p></details>
+        </div>
+      </details>
+
+      <details class="box reveal">
+        <summary>边界说明</summary>
+        <div class="box-body">
+          <ul>
+            <li>EnergyHot 是能源产业资讯与事件项目；持续阅读是主线，日报／每日回顾是补充。</li>
+            <li>目前为本地试运行，本页公开不代表产品已对外上线。</li>
+            <li>阅读模块存在，不等于供给、及时性、归组质量与长期运行已全部验收。</li>
+            <li>背景资料保留原日期；热度不代表真实性、法律效力或投资价值。</li>
+            <li>页面插图为概念插画，不是真实项目照片或产品截图。</li>
+          </ul>
+          <p class="tiny">本页为静态介绍，不联网抓取新闻，也不收集读者输入。</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="foot-tag">持续关注变化，也保留回看的依据。</p>
+    <p><strong>相关实践。</strong><a href="https://ai.run-linux.com/s/mjrGbzjPHs7pAN_1fSdMGA" target="_blank" rel="noopener noreferrer">写作 skill 介绍</a>　·　<a href="https://zefainfo.cn/" target="_blank" rel="noopener noreferrer">泽法官网</a></p>
+    <p><strong>关于开源基础。</strong>部分编辑与事件能力基于 AIHOT 开源项目的思路与能力搭建，并非全部引擎独立自研，也不存在官方合作关系。</p>
+    <p>EnergyHot · 本地试运行阶段的项目介绍页。</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var doc=document.documentElement;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- 阅读方式切换 ---------- */
+  var reads=[
+    {tag:'动态',title:'先知道，发生了什么。',text:'按能源赛道和内容类型读动态，保留出处，方便继续核对。',img:'./assets/energyhot-dynamics.jpg',alt:'概念插画：一条能源消息及其出处'},
+    {tag:'事件',title:'把报道，放回同一件事。',text:'沿相关材料回看前文与后续，事件归组质量仍在持续完善。',img:'./assets/energyhot-events.jpg',alt:'概念插画：同一项目不同阶段的关联材料'},
+    {tag:'资料',title:'查背景，也保留时间。',text:'回看已有资料和原始日期，历史材料与近期资讯分开阅读。',img:'./assets/energyhot-archive.png',alt:'概念插画：背景材料与来源档案'}
+  ];
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var readImgs=[].slice.call(document.querySelectorAll('.panel-fig .read-img'));
+  var rTag=document.getElementById('read-tag');
+  var rTitle=document.getElementById('read-title');
+  var rText=document.getElementById('read-text');
+  var rBody=document.getElementById('read-body');
+  var rPanel=document.getElementById('panel-read');
+  var current=0;
+
+  function setRead(i,focus){
+    current=i;
+    tabs.forEach(function(t,k){
+      var on=k===i;
+      t.setAttribute('aria-selected',on?'true':'false');
+      t.tabIndex=on?0:-1;
+    });
+    rPanel.setAttribute('aria-labelledby',tabs[i].id);
+    rTag.textContent=reads[i].tag;
+    rTitle.textContent=reads[i].title;
+    rText.textContent=reads[i].text;
+    readImgs.forEach(function(im,k){
+      var on=k===i;
+      im.style.display=on?'':'none';
+      im.setAttribute('aria-hidden',on?'false':'true');
+    });
+    if(!reduce){
+      rBody.classList.remove('swap');
+      void rBody.offsetWidth;
+      rBody.classList.add('swap');
+    }
+    if(focus) tabs[i].focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){setRead(i);});
+    t.addEventListener('keydown',function(e){
+      var k=e.key,next=null;
+      if(k==='ArrowRight'||k==='ArrowDown') next=(i+1)%tabs.length;
+      if(k==='ArrowLeft'||k==='ArrowUp') next=(i-1+tabs.length)%tabs.length;
+      if(k==='Home') next=0;
+      if(k==='End') next=tabs.length-1;
+      if(next!==null){e.preventDefault();setRead(next,true);}
+    });
+  });
+
+  /* ---------- 追踪示意 ---------- */
+  var stages=['发布建设计划','报道建设进展','核对并网与运行'];
+  var descs=['计划：先看范围与目标。','进展：对照计划，看实际发生了什么。','运行：继续找材料，区分建成、并网与投运。'];
+  var sBtns=[].slice.call(document.querySelectorAll('.stage'));
+  var bar=document.getElementById('trace-bar');
+  var tDesc=document.getElementById('trace-desc');
+  var prog=document.querySelector('.progress');
+  var playBtn=document.getElementById('trace-play');
+  var timers=[],playing=false,step=0;
+
+  function paint(n){
+    step=n;
+    sBtns.forEach(function(b,k){b.setAttribute('aria-pressed',k===n?'true':'false');});
+    bar.style.width=((n+1)/3*100)+'%';
+    prog.setAttribute('aria-valuenow',String(n+1));
+    tDesc.textContent=descs[n];
+  }
+  function stopTimers(){timers.forEach(clearTimeout);timers=[];}
+  sBtns.forEach(function(b,k){
+    b.addEventListener('click',function(){stopTimers();playing=false;playBtn.disabled=false;playBtn.textContent='重播示意';paint(k);});
+  });
+  function play(){
+    stopTimers();
+    playing=true;
+    playBtn.disabled=true;
+    if(reduce){paint(2);playBtn.disabled=false;playBtn.textContent='重播示意';playing=false;return;}
+    bar.style.width='0%';
+    paint(0);
+    var seq=[450,1000,1550];
+    seq.forEach(function(ms,i){
+      timers.push(setTimeout(function(){paint(i);},ms));
+    });
+    timers.push(setTimeout(function(){playBtn.disabled=false;playBtn.textContent='重播示意';playing=false;},2100));
+  }
+  playBtn.addEventListener('click',play);
+  paint(0);
+
+  /* ---------- 阅读入口 ---------- */
+  var entryTexts=[
+    '<b>资讯流：</b>按时间顺序读单条动态，每条都保留出处。',
+    '<b>产业事件：</b>把同一件事的相关报道归在一起，方便回看前文与后续。',
+    '<b>编辑精选：</b>从当天材料里挑出值得先读的几条，作为阅读起点。',
+    '<b>关注焦点：</b>围绕当前受关注的议题集中回看，不做热度排名。',
+    '<b>每日回顾：</b>阶段性汇总，帮助回看，不替代持续阅读。',
+    '<b>资料检索：</b>查背景材料与原始日期，历史资料与近期资讯分开。'
+  ];
+  var eBtns=[].slice.call(document.querySelectorAll('.chip'));
+  var eDesc=document.getElementById('entry-desc');
+  eBtns.forEach(function(b,i){
+    b.addEventListener('click',function(){
+      eBtns.forEach(function(x){x.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true');
+      eDesc.innerHTML=entryTexts[i];
+    });
+  });
+
+  /* ---------- 复制链接（真实反馈） ---------- */
+  [].slice.call(document.querySelectorAll('.copy')).forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var txt=btn.getAttribute('data-copy');
+      var fb=btn.parentNode.querySelector('.copy-fb');
+      function ok(){fb.className='copy-fb';fb.textContent='已复制完整地址';}
+      function fail(){fb.className='copy-fb err';fb.textContent='复制失败，请展开“查看完整地址”手动选中';}
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(function(){
+          // 校验写入结果不可读取时仍以 resolve 为准
+          ok();
+        }).catch(function(){legacy();});
+      }else{legacy();}
+      function legacy(){
+        try{
+          var ta=document.createElement('textarea');
+          ta.value=txt;ta.setAttribute('readonly','');
+          ta.style.position='fixed';ta.style.top='-1000px';
+          document.body.appendChild(ta);ta.select();
+          var done=document.execCommand&&document.execCommand('copy');
+          document.body.removeChild(ta);
+          done?ok():fail();
+        }catch(e){fail();}
+      }
+    });
+  });
+
+  /* ---------- 滚动渐入 ---------- */
+  if(!reduce&&'IntersectionObserver' in window){
+    doc.classList.add('has-io');
+    var io=new IntersectionObserver(function(list){
+      list.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+      });
+    },{rootMargin:'0px 0px -8% 0px',threshold:0.08});
+    [].slice.call(document.querySelectorAll('.reveal')).forEach(function(el){io.observe(el);});
+  }
+})();
+</script>
+</body>
+</html>
